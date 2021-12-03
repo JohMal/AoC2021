@@ -1,6 +1,6 @@
 import java.io.File
 
-private const val INPUT_FILE_PATH = "src/main/resources/task2/input_task_2.txt"
+private const val INPUT_FILE_PATH = "src/main/resources/input_task_2.txt"
 
 enum class MoveDirection(val value: String) {
     FORWARD("forward"),
@@ -32,20 +32,23 @@ fun String.toMoveCommand(): MoveCommand? {
 }
 
 fun main() {
-    val inputCommands = File(INPUT_FILE_PATH).readLines()
 
     // Task 2.1
-    calculatePosition(inputCommands.mapNotNull { it.toMoveCommand() }).also {
+    File(INPUT_FILE_PATH).useLines { lines ->
+        calculatePosition(lines.mapNotNull { it.toMoveCommand() })
+    }.also {
         println("Task 2.1: ${it.depth * it.horizPos}")
     }
 
     // Task 2.2
-    calculatePositionWithAim(inputCommands.mapNotNull { it.toMoveCommand() }).also {
-        println("Task 2.2: ${it.depth * it.horizPos}")
+    File(INPUT_FILE_PATH).useLines { lines ->
+        calculatePositionWithAim(lines.mapNotNull { it.toMoveCommand() })
+    }.also {
+        println("Task 2.1: ${it.depth * it.horizPos}")
     }
 }
 
-fun calculatePosition(moveCommands: List<MoveCommand>): Position {
+fun calculatePosition(moveCommands: Sequence<MoveCommand>): Position {
     return moveCommands.fold(Position()) { acc, e ->
         when (e.direction) {
             MoveDirection.FORWARD -> acc.copy(horizPos = acc.horizPos + e.distance)
@@ -55,7 +58,7 @@ fun calculatePosition(moveCommands: List<MoveCommand>): Position {
     }
 }
 
-fun calculatePositionWithAim(moveCommands: List<MoveCommand>): Position {
+fun calculatePositionWithAim(moveCommands: Sequence<MoveCommand>): Position {
     return moveCommands.fold(Position()) { acc, e ->
         when (e.direction) {
             MoveDirection.FORWARD -> acc.copy(
