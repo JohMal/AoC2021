@@ -32,7 +32,6 @@ fun String.toMoveCommand(): MoveCommand? {
 }
 
 fun main() {
-
     // Task 2.1
     File(INPUT_FILE_PATH).useLines { lines ->
         calculatePosition(lines.mapNotNull { it.toMoveCommand() })
