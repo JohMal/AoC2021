@@ -56,21 +56,21 @@ fun calculateDiagnosticResult(diagnosticReport: List<String>): DiagnosticResult 
     return DiagnosticResult(gammaRate, epsilonRate, oxygenGeneratorRating, co2ScrubberRating)
 }
 
-fun List<Int>.addDiagnosticLine(diagnosticLine: String): List<Int> {
+private fun List<Int>.addDiagnosticLine(diagnosticLine: String): List<Int> {
     return this.zip(diagnosticLine.toList()) { charCounter, lineChar ->
         charCounter + if (lineChar == '1') 1 else -1
     }
 }
 
-fun String.binaryStringToInteger(): Int {
+private fun String.binaryStringToInteger(): Int {
     return Integer.parseInt(this, 2)
 }
 
-fun List<String>.calcDiagnosisAnalysis(): List<Int> =
+private fun List<String>.calcDiagnosisAnalysis(): List<Int> =
     fold(List(first().length) { 0 }) { acc, e -> acc.addDiagnosticLine(e) }
 
 
-fun filterDiagnosisLinesWithCriteria(
+private tailrec fun filterDiagnosisLinesWithCriteria(
     criteria: (Int, Int) -> Boolean,
     diagnosisLines: List<String>,
     currentBit: Int = 0,
