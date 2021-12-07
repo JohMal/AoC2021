@@ -42,14 +42,14 @@ fun calculateDiagnosticResult(diagnosticReport: List<String>): DiagnosticResult 
     val oxygenGeneratorRating = filterDiagnosisLinesWithCriteria(
         diagnosisLines = diagnosticReport,
         criteria = { diagAnaBit, digit ->
-            digit == if (diagAnaBit >= 0) 1 else 0
+            digit == if (diagAnaBit >= 0) '1' else '0'
         }
     )
 
     val co2ScrubberRating = filterDiagnosisLinesWithCriteria(
         diagnosisLines = diagnosticReport,
         criteria = { diagAnaBit, digit ->
-            digit == if (diagAnaBit >= 0) 0 else 1
+            digit == if (diagAnaBit >= 0) '0' else '1'
         }
     )
 
@@ -71,7 +71,7 @@ private fun List<String>.calcDiagnosisAnalysis(): List<Int> =
 
 
 private tailrec fun filterDiagnosisLinesWithCriteria(
-    criteria: (Int, Int) -> Boolean,
+    criteria: (Int, Char) -> Boolean,
     diagnosisLines: List<String>,
     currentBit: Int = 0,
 ): Int {
@@ -84,7 +84,7 @@ private tailrec fun filterDiagnosisLinesWithCriteria(
                 criteria,
                 diagnosisLines.filter {
                     it.getOrNull(currentBit)
-                        ?.let { digit -> criteria(diagnosticAnalysis[currentBit], Character.getNumericValue(digit)) }
+                        ?.let { digit -> criteria(diagnosticAnalysis[currentBit], digit) }
                         ?: false
                 },
                 currentBit + 1,
