@@ -14,7 +14,6 @@ internal class Task9Tests {
     @Test
     fun findTotalRiskLevelOfHeightMap() {
         val riskLevel = findTotalRiskLevelOfHeightMap(testHeightMap.split("\n"))
-
         assertEquals(15, riskLevel)
     }
 }

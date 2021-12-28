@@ -2,7 +2,7 @@ import java.io.File
 
 private const val INPUT_FILE_PATH = "src/main/resources/input_task_8.txt"
 
-data class SegmentInputLine(
+private data class SegmentInputLine(
     val digitScan: List<BooleanArray>,
     val digitOutput: List<BooleanArray>
 )

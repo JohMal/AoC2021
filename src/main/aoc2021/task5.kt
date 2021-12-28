@@ -4,12 +4,12 @@ import kotlin.math.min
 
 private const val INPUT_FILE_PATH = "src/main/resources/input_task_5.txt"
 
-data class Point(
+private data class Point(
     val x: Int,
     val y: Int
 )
 
-data class Range(
+private data class Range(
     val startPoint: Point,
     val endPoint: Point,
 ) {
@@ -40,19 +40,19 @@ data class Range(
 fun main() {
     // Task 5.1
     File(INPUT_FILE_PATH).useLines { lines ->
-        calculateDangerousHydrothermalVents(lines, false).count()
+        calculateNumberOfDangerousHydrothermalVents(lines, false)
     }.also { println("Task 5.1: $it") }
 
     // Task 5.2
     File(INPUT_FILE_PATH).useLines { lines ->
-        calculateDangerousHydrothermalVents(lines, true).count()
+        calculateNumberOfDangerousHydrothermalVents(lines, true)
     }.also { println("Task 5.2: $it") }
 }
 
-fun calculateDangerousHydrothermalVents(hydroThermalVentInput: Sequence<String>, allowVertical: Boolean): List<Point> =
-    calculateDangerousHydrothermalVentsIntern(hydroThermalVentInput.map { it.parseToRange() }, allowVertical)
+fun calculateNumberOfDangerousHydrothermalVents(hydroThermalVentInput: Sequence<String>, allowVertical: Boolean): Int =
+    calculateDangerousHydrothermalVents(hydroThermalVentInput.map { it.parseToRange() }, allowVertical).count()
 
-private fun calculateDangerousHydrothermalVentsIntern(
+private fun calculateDangerousHydrothermalVents(
     hydroThermalVents: Sequence<Range>,
     allowVertical: Boolean
 ): List<Point> {
