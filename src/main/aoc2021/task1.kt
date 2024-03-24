@@ -1,6 +1,6 @@
 import java.io.File
 
-private const val INPUT_FILE_PATH = "src/main/resources/task1/input_task_1.txt"
+private const val INPUT_FILE_PATH = "src/main/resources/input_task_1.txt"
 
 fun main() {
     // Task 1.1

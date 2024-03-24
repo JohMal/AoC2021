@@ -1,16 +1,9 @@
-package task_2
-
-import Position
-import calculatePosition
-import calculatePositionWithAim
-import calculateSonarIncreasingDepth
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
-import toMoveCommand
 
 internal class Task2Tests {
-    private val exampleCommands = listOf(
+    private val exampleCommands = sequenceOf(
         "forward 5",
         "down 5",
         "forward 8",
