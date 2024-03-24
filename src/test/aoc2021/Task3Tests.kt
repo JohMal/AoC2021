@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 
 internal class Task3Tests {
-    private val exampleDiagnosticReport = listOf(
+    private val testDiagnosticReport = listOf(
         "00100",
         "11110",
         "10110",
@@ -20,7 +20,7 @@ internal class Task3Tests {
 
     @Test
     fun calculateDiagnosticResultPowerConsumptionTest() {
-        with(calculateDiagnosticResult(exampleDiagnosticReport)) {
+        with(calculateDiagnosticResult(testDiagnosticReport)) {
             assertEquals(22, gammaRate)
             assertEquals(9, epsilonRate)
             assertEquals(198, powerConsumption)
@@ -29,7 +29,7 @@ internal class Task3Tests {
 
     @Test
     fun calculateDiagnosticResultLifeSupportRatingTest() {
-        with(calculateDiagnosticResult(exampleDiagnosticReport)) {
+        with(calculateDiagnosticResult(testDiagnosticReport)) {
             assertEquals(23, oxygenGeneratorRating)
             assertEquals(10, co2ScrubberRating)
             assertEquals(230, lifeSupportRating)
