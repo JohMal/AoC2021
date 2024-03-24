@@ -18,15 +18,13 @@ internal class Task8Tests {
 
     @Test
     fun getNumberOfUniqueSegmentNumbers() {
-        val uniqueSegmentsInOutput =
-            getNumberOfUniqueSegmentNumbers(test7SegmentInput.split("\n").asSequence())
+        val uniqueSegmentsInOutput = getNumberOfUniqueSegmentNumbers(test7SegmentInput.split("\n").asSequence())
         assertEquals(26, uniqueSegmentsInOutput)
     }
 
     @Test
     fun getDigitOutputSum() {
-        val digitOutputSum =
-            getDigitOutputSum(test7SegmentInput.split("\n").asSequence())
+        val digitOutputSum = getDigitOutputSum(test7SegmentInput.split("\n").asSequence())
         assertEquals(61229, digitOutputSum)
     }
 }

@@ -8,14 +8,12 @@ internal class Task7Tests {
     @Test
     fun calculateMinCrapAlignmentFuelCosts_Constant_Test() {
         val crapAlignmentFuelCosts = calculateMinCrapAlignmentFuelCosts(testCrapPositions, FuelCostStrategy.CONSTANT)
-
         assertEquals(37, crapAlignmentFuelCosts)
     }
 
     @Test
     fun calculateMinCrapAlignmentFuelCosts_Inc_Test() {
         val crapAlignmentFuelCosts = calculateMinCrapAlignmentFuelCosts(testCrapPositions, FuelCostStrategy.INC)
-
         assertEquals(168, crapAlignmentFuelCosts)
     }
 }

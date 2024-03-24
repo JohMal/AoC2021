@@ -2,7 +2,7 @@ import java.io.File
 
 private const val INPUT_FILE_PATH = "src/main/resources/input_task_2.txt"
 
-enum class MoveDirection(val value: String) {
+private enum class MoveDirection(val value: String) {
     FORWARD("forward"),
     DOWN("down"),
     UP("up");
@@ -12,7 +12,7 @@ enum class MoveDirection(val value: String) {
     }
 }
 
-data class MoveCommand(
+private data class MoveCommand(
     val direction: MoveDirection,
     val distance: Int
 )
@@ -22,7 +22,6 @@ data class Position(
     val horizPos: Int = 0,
     val aim: Int = 0
 )
-
 
 fun main() {
     // Task 2.1
@@ -36,10 +35,10 @@ fun main() {
         .also { println("Task 2.1: ${it.depth * it.horizPos}") }
 }
 
-fun calculatePosition(moveCommands: Sequence<String>) =
+fun calculatePosition(moveCommands: Sequence<String>): Position =
     calculatePositionIntern(moveCommands.mapNotNull { it.parseMoveCommand() })
 
-fun calculatePositionWithAim(moveCommands: Sequence<String>) =
+fun calculatePositionWithAim(moveCommands: Sequence<String>): Position =
     calculatePositionWithAimIntern(moveCommands.mapNotNull { it.parseMoveCommand() })
 
 private fun String.parseMoveCommand(): MoveCommand? {
@@ -50,18 +49,17 @@ private fun String.parseMoveCommand(): MoveCommand? {
     )
 }
 
-private fun calculatePositionIntern(moveCommands: Sequence<MoveCommand>): Position {
-    return moveCommands.fold(Position()) { acc, e ->
+private fun calculatePositionIntern(moveCommands: Sequence<MoveCommand>): Position =
+    moveCommands.fold(Position()) { acc, e ->
         when (e.direction) {
             MoveDirection.FORWARD -> acc.copy(horizPos = acc.horizPos + e.distance)
             MoveDirection.DOWN -> acc.copy(depth = acc.depth + e.distance)
             MoveDirection.UP -> acc.copy(depth = acc.depth - e.distance)
         }
     }
-}
 
-private fun calculatePositionWithAimIntern(moveCommands: Sequence<MoveCommand>): Position {
-    return moveCommands.fold(Position()) { acc, e ->
+private fun calculatePositionWithAimIntern(moveCommands: Sequence<MoveCommand>): Position =
+    moveCommands.fold(Position()) { acc, e ->
         when (e.direction) {
             MoveDirection.FORWARD -> acc.copy(
                 horizPos = acc.horizPos + e.distance,
@@ -71,4 +69,3 @@ private fun calculatePositionWithAimIntern(moveCommands: Sequence<MoveCommand>):
             MoveDirection.UP -> acc.copy(aim = acc.aim - e.distance)
         }
     }
-}

@@ -2,12 +2,12 @@ import java.io.File
 
 private const val INPUT_FILE_PATH = "src/main/resources/input_task_12.txt"
 
-data class CaveNode(
+private data class CaveNode(
     val id: String,
     val isSmall: Boolean = isCaveNodeSmall(id)
 )
 
-data class CaveEdge(
+private data class CaveEdge(
     val startNode: CaveNode,
     val endNode: CaveNode
 )
@@ -24,7 +24,7 @@ fun main() {
 
     // Task 12.2
     calcNumberOfPaths(caveEdges, 1)
-        .also { println("Task 12.1: $it") }
+        .also { println("Task 12.2: $it") }
 }
 
 fun calcNumberOfPaths(caveConnections: List<String>, smallCaveRevisitLimit: Int = 0): Int = calcNumberOfPathsIntern(
@@ -47,7 +47,7 @@ private fun calcNumberOfPathsIntern(
 
     // check for small-cave revisits
     val smallCaveRevisit = isCaveNodeSmall(currentEdge) &&
-            currentEdge in currentPath.filter { it.startNode.isSmall }.map { it.startNode.id }
+            currentEdge in currentPath.map { it.startNode.id }
     if (smallCaveRevisit && smallCaveRevisitLimit <= 0) return 0
 
     // travel outgoing edges recusive

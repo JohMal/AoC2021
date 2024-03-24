@@ -2,7 +2,7 @@ import java.io.File
 
 private const val INPUT_FILE_PATH = "src/main/resources/input_task_4.txt"
 
-data class BingoGameState(
+private data class BingoGameState(
     val drawSequence: List<Int> = emptyList(),
     val boards: List<BingoBoard>,
 )
@@ -89,8 +89,7 @@ private fun String.parseToBingoBoard(): BingoBoard {
 }
 
 private fun checkBoardForBingo(fields: List<List<BingoField>>): Boolean {
-    val columns = fields.indices
-        .map { colId -> fields.map { it[colId] } }
+    val columns = fields.indices.map { colId -> fields.map { it[colId] } }
 
     return when {
         fields.any { line -> line.all { it.checked } } -> true // bingo in line

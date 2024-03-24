@@ -19,16 +19,16 @@ internal class Task5Tests {
     @Test
     fun calculateDangerousHydrothermalVentsNoVerticalTest() {
         val inputSequence = testHydrothermalVents.splitToSequence("\n")
-        val dangerousPoints = calculateDangerousHydrothermalVents(inputSequence, false)
+        val numberOfDangerousPoints = calculateNumberOfDangerousHydrothermalVents(inputSequence, false)
 
-        assertEquals(5, dangerousPoints.count())
+        assertEquals(5, numberOfDangerousPoints)
     }
 
     @Test
     fun calculateDangerousHydrothermalVentsVerticalTest() {
         val inputSequence = testHydrothermalVents.splitToSequence("\n")
-        val dangerousPoints = calculateDangerousHydrothermalVents(inputSequence, true)
+        val numberOfDangerousPoints = calculateNumberOfDangerousHydrothermalVents(inputSequence, true)
 
-        assertEquals(12, dangerousPoints.count())
+        assertEquals(12, numberOfDangerousPoints)
     }
 }

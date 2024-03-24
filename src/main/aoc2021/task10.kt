@@ -26,7 +26,6 @@ private val autocompleteScoreMap = mapOf(
     '>' to 4,
 )
 
-
 fun main() {
     val navigationSubsystemCode = File(INPUT_FILE_PATH).readLines()
 
