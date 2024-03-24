@@ -14,13 +14,13 @@ internal class Task2Tests {
 
     @Test
     fun calculatePositionTest() {
-        val pos = calculatePosition(testCommands.mapNotNull { it.toMoveCommand() })
+        val pos = calculatePosition(testCommands)
         assertEquals(Position(depth = 10, horizPos = 15), pos)
     }
 
     @Test
     fun calculatePositionWithAimTest() {
-        val pos = calculatePositionWithAim(testCommands.mapNotNull { it.toMoveCommand() })
+        val pos = calculatePositionWithAim(testCommands)
         assertEquals(60, pos.depth)
         assertEquals(15, pos.horizPos)
     }

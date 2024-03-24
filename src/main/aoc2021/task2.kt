@@ -23,7 +23,26 @@ data class Position(
     val aim: Int = 0
 )
 
-fun String.toMoveCommand(): MoveCommand? {
+
+fun main() {
+    // Task 2.1
+    File(INPUT_FILE_PATH)
+        .useLines { lines -> calculatePosition(lines) }
+        .also { println("Task 2.1: ${it.depth * it.horizPos}") }
+
+    // Task 2.2
+    File(INPUT_FILE_PATH)
+        .useLines { lines -> calculatePositionWithAim(lines) }
+        .also { println("Task 2.1: ${it.depth * it.horizPos}") }
+}
+
+fun calculatePosition(moveCommands: Sequence<String>) =
+    calculatePositionIntern(moveCommands.mapNotNull { it.parseMoveCommand() })
+
+fun calculatePositionWithAim(moveCommands: Sequence<String>) =
+    calculatePositionWithAimIntern(moveCommands.mapNotNull { it.parseMoveCommand() })
+
+private fun String.parseMoveCommand(): MoveCommand? {
     val splitted = this.split(" ")
     return MoveCommand(
         direction = MoveDirection.fromValue(splitted[0]) ?: return null,
@@ -31,23 +50,7 @@ fun String.toMoveCommand(): MoveCommand? {
     )
 }
 
-fun main() {
-    // Task 2.1
-    File(INPUT_FILE_PATH).useLines { lines ->
-        calculatePosition(lines.mapNotNull { it.toMoveCommand() })
-    }.also {
-        println("Task 2.1: ${it.depth * it.horizPos}")
-    }
-
-    // Task 2.2
-    File(INPUT_FILE_PATH).useLines { lines ->
-        calculatePositionWithAim(lines.mapNotNull { it.toMoveCommand() })
-    }.also {
-        println("Task 2.1: ${it.depth * it.horizPos}")
-    }
-}
-
-fun calculatePosition(moveCommands: Sequence<MoveCommand>): Position {
+private fun calculatePositionIntern(moveCommands: Sequence<MoveCommand>): Position {
     return moveCommands.fold(Position()) { acc, e ->
         when (e.direction) {
             MoveDirection.FORWARD -> acc.copy(horizPos = acc.horizPos + e.distance)
@@ -57,7 +60,7 @@ fun calculatePosition(moveCommands: Sequence<MoveCommand>): Position {
     }
 }
 
-fun calculatePositionWithAim(moveCommands: Sequence<MoveCommand>): Position {
+private fun calculatePositionWithAimIntern(moveCommands: Sequence<MoveCommand>): Position {
     return moveCommands.fold(Position()) { acc, e ->
         when (e.direction) {
             MoveDirection.FORWARD -> acc.copy(
