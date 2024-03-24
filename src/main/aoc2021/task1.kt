@@ -15,7 +15,7 @@ fun main() {
 }
 
 fun calculateSonarIncreasingDepth(sonarDepths: Sequence<Int>, sumCount: Int = 1): Int =
-    sonarDepths.windowed(sumCount, 1)
+    sonarDepths.windowed(sumCount)
         .map { it.sum() }
-        .windowed(2, 1)
+        .windowed(2)
         .count { (first, second) -> second > first }
